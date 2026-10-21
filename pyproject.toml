@@ -1,0 +1,17 @@
+[project]
+name = "aphrodite"
+version = "0.1.0"
+description = "Personal plotting library built upon seaborn"
+authors = [
+    {name = "Yitong Ma",email = "yitongma7@gmail.com"}
+]
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "seaborn (>=0.13)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
