@@ -29,6 +29,7 @@ data = {
 
 ax = bar_point_plot(data=data, x="sample", y="value", hue="group", legend='brief')
 ax.set(xlabel="sample", ylabel="Value")
+plt.tight_layout()
 plt.show()
 ```
 

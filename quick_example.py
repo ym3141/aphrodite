@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from aphrodite import bar_point_plot
+from aphrodite import bar_point_plot, rotate_xtick_labels
 
 data = {
     "group": ["A", "A", "A", "B", "B"] * 3,
@@ -10,4 +10,6 @@ data = {
 
 ax = bar_point_plot(data=data, x="sample", y="value", hue="group", legend='brief')
 ax.set(xlabel="sample", ylabel="Value")
+rotate_xtick_labels(ax, 30)
+plt.tight_layout()
 plt.show()
