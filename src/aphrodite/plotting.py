@@ -9,7 +9,7 @@ __all__ = ["bar_point_plot", "closer_strip_plot"]
 
 def bar_point_plot(
     data=None, x=None, y=None, hue=None, order=None, hue_order=None, estimator='mean', errorbar=None, dodge=True,
-    orient='v', color=None, palette='Set2', saturation=0.75, fill=True, hue_norm=None, width=0.8, gap=0.2, dot_size=5,
+    orient='v', color=None, palette='Set2', saturation=0.75, fill=True, hue_norm=None, width=0.8, gap=0, dot_size=5,
     log_scale=False, native_scale=False, formatter=None, legend='auto', capsize=0, err_kws=None, despline=True,
     ax=None, **kwargs
 ):
