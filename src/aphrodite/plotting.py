@@ -1,7 +1,6 @@
 import seaborn as sns
 import numpy as np
 
-from matplotlib.colors import to_rgba
 import matplotlib.pyplot as plt
 
 __all__ = ["bar_point_plot", "closer_strip_plot"]
@@ -13,27 +12,22 @@ def bar_point_plot(
     log_scale=False, native_scale=False, formatter=None, legend='auto', capsize=0, err_kws=None, despline=True,
     ax=None, **kwargs
 ):
-    if hue == None:
+    if hue is None:
         hue = x
 
-    ax = sns.barplot(
+    shared = dict(
         data=data, x=x, y=y, hue=hue, order=order, hue_order=hue_order,
-        estimator=estimator, errorbar=errorbar, orient=orient, color=color, palette=palette, saturation=saturation,
-        fill=fill, hue_norm=hue_norm, width=width, dodge=dodge, gap=gap, log_scale=log_scale,
-        native_scale=native_scale, formatter=formatter, legend=legend, capsize=capsize, err_kws=err_kws,
-        edgecolor='black', linewidth=1,
-        ax=ax, **kwargs
+        dodge=dodge, orient=orient, palette=palette, hue_norm=hue_norm,
+        log_scale=log_scale, native_scale=native_scale, formatter=formatter,
     )
+    bar_options = {"edgecolor": "black", "linewidth": 1, **kwargs}
 
-    if "edgecolor" in kwargs:
-        edgecolor = kwargs['edgecolor']
-    else:
-        edgecolor = to_rgba('black', alpha=1)
-
-    if "linewidth" in kwargs:
-        linewidth = kwargs['linewidth']
-    else:
-        linewidth = 1
+    ax = sns.barplot(
+        **shared,
+        estimator=estimator, errorbar=errorbar, color=color, saturation=saturation,
+        fill=fill, width=width, gap=gap, legend=legend, capsize=capsize,
+        err_kws=err_kws, ax=ax, **bar_options
+    )
 
     if hue is None:
         dot_color = 'gray' if color is None else color
@@ -41,10 +35,9 @@ def bar_point_plot(
         dot_color = None  # Let seaborn handle the color based on hue
 
     sns.stripplot(
-        data=data, x=x, y=y, hue=hue, order=order, hue_order=hue_order,
-        dodge=dodge, orient=orient, color=dot_color, palette=palette, alpha=0.7,
-        size=dot_size, edgecolor=edgecolor, linewidth=linewidth,
-        hue_norm=hue_norm, log_scale=log_scale, native_scale=native_scale, formatter=formatter, 
+        **shared,
+        color=dot_color, alpha=0.7, size=dot_size,
+        edgecolor=bar_options["edgecolor"], linewidth=bar_options["linewidth"],
         legend=False, ax=ax
     )
 
@@ -52,6 +45,7 @@ def bar_point_plot(
         sns.despine(ax=ax)
 
     return ax
+
 
 def closer_strip_plot(hue_order, *args, dodge=0.5, **kwargs):
     ax = kwargs.pop("ax", None)
