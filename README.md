@@ -1,4 +1,4 @@
-# Aphrodite
+# Aphrodite is Seaborn
 
 A personal plotting library built on [Seaborn](https://seaborn.pydata.org/), with helpers for plots I use often. This is a personal project, so expect bugs.
 
