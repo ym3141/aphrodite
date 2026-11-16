@@ -7,8 +7,8 @@ __all__ = ["bar_point_plot", "closer_strip_plot"]
 
 
 def bar_point_plot(
-    data=None, x=None, y=None, hue=None, order=None, hue_order=None, estimator='mean', errorbar=None, dodge=True,
-    orient='v', color=None, palette='Set2', saturation=0.75, fill=True, hue_norm=None, width=0.8, gap=0, dot_size=5,
+    data=None, x=None, y=None, hue=None, order=None, hue_order=None, estimator='mean', errorbar=None, dodge=True, fill_alpha=0.8,
+    orient='v', color=None, palette='Set2', saturation=0.75, fill=True, hue_norm=None, width=0.8, gap=.2, dot_size=5,
     log_scale=False, native_scale=False, formatter=None, legend='auto', capsize=0, err_kws=None, despline=True,
     ax=None, **kwargs
 ):
@@ -20,7 +20,7 @@ def bar_point_plot(
         dodge=dodge, orient=orient, palette=palette, hue_norm=hue_norm,
         log_scale=log_scale, native_scale=native_scale, formatter=formatter,
     )
-    bar_options = {"edgecolor": "black", "linewidth": 1, **kwargs}
+    bar_options = {"edgecolor": "black", "linewidth": 2.5, **kwargs}
 
     ax = sns.barplot(
         **shared,
@@ -33,6 +33,9 @@ def bar_point_plot(
         dot_color = 'gray' if color is None else color
     else:
         dot_color = None  # Let seaborn handle the color based on hue
+
+    for patch in ax.patches:
+        patch.set_alpha(fill_alpha)
 
     sns.stripplot(
         **shared,

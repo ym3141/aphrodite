@@ -2,7 +2,7 @@ import seaborn as sns
 import numpy as np
 from matplotlib.colors import ListedColormap
 
-prism_pallete1 = sns.color_palette(['#3BA99A', '#C93963', '#7E94C4', '#74A13C', '#FC584F'])
+prism_pallete1 = sns.color_palette(['#C93963', '#3BA99A', '#7E94C4', '#74A13C', '#FC584F'])
 
 def clipped_cmap(palette=None, clip_lower=.1, clip_upper=None):
     if not (clip_lower >= 0 and clip_lower < 0.5):
